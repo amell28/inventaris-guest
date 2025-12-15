@@ -25,7 +25,7 @@ class KategoriAsetController extends Controller
             })
 
             ->orderBy('nama')
-            ->paginate(5)
+            ->paginate(10)
             ->withQueryString(); // ⬅️ penting biar pagination bawa search
 
         return view('pages.kategoriAset.index', compact('kategoriAset'));

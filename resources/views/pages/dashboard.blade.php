@@ -35,7 +35,7 @@
 						<div class="section-title">
                             {{-- Judul dan Deskripsi Ditinggikan --}}
 							<h2 class="mb-20">Sistem Terpadu Pengelolaan Aset Desa</h2>
-							<p class="mb-30">Sistem Bina Desa dirancang khusus untuk membantu pemerintah desa dalam mengelola inventaris dan aset secara digital. Dengan sistem ini, setiap barang inventaris dan aset desa dapat tercatat, terpantau, dan terlacak dengan mudah, mengurangi resiko kehilangan dan meningkatkan akuntabilitas pengelolaan barang milik desa.</p>
+							<p class="mb-30">Sistem Inventaris Aset dirancang khusus untuk membantu pemerintah desa dalam mengelola inventaris dan aset secara digital. Dengan sistem ini, setiap barang inventaris dan aset desa dapat tercatat, terpantau, dan terlacak dengan mudah, mengurangi resiko kehilangan dan meningkatkan akuntabilitas pengelolaan barang milik desa.</p>
 
                             {{-- Fitur Utama Disesuaikan --}}
 							<h4 class="mt-4 mb-3">Fitur Utama Sistem:</h4>
