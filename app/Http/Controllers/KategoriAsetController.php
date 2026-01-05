@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\kategoriAset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KategoriAsetController extends Controller
 {
@@ -15,7 +16,7 @@ class KategoriAsetController extends Controller
     {
         $kategoriAset = KategoriAset::query()
 
-        // 🔍 SEARCH (nama & kode)
+        // SEARCH (nama & kode)
             ->when($request->filled('search'), function ($q) use ($request) {
                 $search = $request->search;
                 $q->where(function ($sub) use ($search) {
@@ -26,7 +27,7 @@ class KategoriAsetController extends Controller
 
             ->orderBy('nama')
             ->paginate(10)
-            ->withQueryString(); // ⬅️ penting biar pagination bawa search
+            ->withQueryString(); //  penting biar pagination bawa search
 
         return view('pages.kategoriAset.index', compact('kategoriAset'));
     }
@@ -93,10 +94,19 @@ class KategoriAsetController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(KategoriAset $kategoriAset)
-    {
-        $kategoriAset->delete();
+{
+    // Cek langsung ke tabel 'aset' (sesuaikan nama tabel Anda di database)
+    // Apakah ada aset yang punya kategori_id ini?
+    $exists = DB::table('aset')
+                ->where('kategori_id', $kategoriAset->kategori_id)
+                ->exists();
 
+    if ($exists) {
         return redirect()->route('kategoriAset.index')
-            ->with('success', 'Kategori aset berhasil dihapus!');
+            ->withErrors('Gagal: Kategori ini masih dipakai oleh data Aset.');
     }
+
+    $kategoriAset->delete();
+    return redirect()->route('kategoriAset.index')->with('success', 'Kategori berhasil dihapus.');
+}
 }
