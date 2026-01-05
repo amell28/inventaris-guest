@@ -12,7 +12,6 @@ class AsetController extends Controller
     {
         $query = Aset::with(['kategoriAset', 'media']);
 
-        // 🔍 SEARCH (nama aset / kode aset)
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -21,12 +20,12 @@ class AsetController extends Controller
             });
         }
 
-        // 🎯 FILTER KONDISI
+        // FILTER KONDISI
         if ($request->filled('kondisi')) {
             $query->where('kondisi', $request->kondisi);
         }
 
-        // 🎯 FILTER KATEGORI
+        // FILTER KATEGORI
         if ($request->filled('kategori_id')) {
             $query->where('kategori_id', $request->kategori_id);
         }

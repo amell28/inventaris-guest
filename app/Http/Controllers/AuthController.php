@@ -32,7 +32,6 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        // VALIDASI LOGIN
         $validator = Validator::make($request->all(), [
             'email'    => 'required|email|max:255',
             'password' => 'required|min:3',
@@ -47,19 +46,15 @@ class AuthController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        //  CEK USER
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
             return back()->withErrors(['email' => 'Email tidak terdaftar'])->withInput();
         }
 
-        //  CEK PASSWORD
         if (!Hash::check($request->password, $user->password)) {
             return back()->withErrors(['password' => 'Password salah'])->withInput();
         }
-
-
         //  SIMPAN SESSION LOGIN
         Session::put('login', true);
         Session::put('user_id', $user->id);
@@ -97,7 +92,7 @@ class AuthController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        //  SIMPAN FOTO PROFIL (opsional)
+
         $photoPath = null;
 
         if ($request->hasFile('profile_photo')) {

@@ -59,7 +59,7 @@ class LokasiAsetController extends Controller
             'keterangan'  => $request->keterangan,
         ]);
 
-        // SIMPAN FOTO (JIKA ADA)
+        // SIMPAN FOTO
         if ($request->hasFile('media_file')) {
             $path = $request->file('media_file')->store('lokasi_aset', 'public');
 
